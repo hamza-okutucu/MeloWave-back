@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(apiBasePath + "/song/stream/*").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/song/artists").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/song/genres").permitAll();
+        http.authorizeRequests().antMatchers(apiBasePath + "/song/status").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter());
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
