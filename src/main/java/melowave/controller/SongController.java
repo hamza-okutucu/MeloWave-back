@@ -147,6 +147,11 @@ public class SongController {
                 .contentLength(song.getAudio().length)
                 .body(resource);
     }
+    
+    @GetMapping("/status")
+    public ResponseEntity<String> getStatus() {
+        return new ResponseEntity<>("Looks good !", HttpStatus.OK);
+    }
 
     @GetMapping("/download/{songId}")
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
