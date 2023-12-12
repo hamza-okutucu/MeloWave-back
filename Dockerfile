@@ -22,6 +22,9 @@ FROM openjdk:8-jre-alpine
 # Définir le répertoire de travail
 WORKDIR /app
 
+# Copier le certificat root.crt
+COPY root.crt .
+
 # Copier le fichier JAR généré à partir de la phase de construction précédente
 COPY --from=build /app/target/MeloWave-0.0.1-SNAPSHOT.jar .
 
