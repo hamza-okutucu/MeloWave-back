@@ -23,7 +23,7 @@ FROM openjdk:8-jre-alpine
 WORKDIR /app
 
 # Copier le fichier JAR généré à partir de la phase de construction précédente
-COPY --from=build /app/target/home-0.0.1-SNAPSHOT.jar .
+COPY --from=build /app/target/MeloWave-0.0.1-SNAPSHOT.jar .
 
 # Exposer le port sur lequel l'application s'exécute
 EXPOSE 8080
