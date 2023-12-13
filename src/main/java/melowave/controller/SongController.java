@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/song")
-@CrossOrigin(origins = "https://hamza-okutucu.github.io")
 @RequiredArgsConstructor
 public class SongController {
 

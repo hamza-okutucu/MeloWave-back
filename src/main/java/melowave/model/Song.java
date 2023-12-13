@@ -23,7 +23,6 @@ public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "title", nullable = false)

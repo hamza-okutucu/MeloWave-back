@@ -34,7 +34,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "https://hamza-okutucu.github.io")
 @RequiredArgsConstructor
 public class UserController {
 
