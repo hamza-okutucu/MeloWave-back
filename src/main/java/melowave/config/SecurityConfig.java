@@ -79,8 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        // Autorise toutes les origines (à ajuster selon vos besoins)
-        config.addAllowedOrigin("*");
+        // Autorise votre origine spécifique
+        config.addAllowedOrigin("https://hamza-okutucu.github.io");
 
         // Autorise toutes les méthodes HTTP (GET, POST, etc.)
         config.addAllowedMethod("*");
