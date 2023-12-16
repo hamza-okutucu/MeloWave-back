@@ -85,6 +85,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Autorise toutes les méthodes HTTP (GET, POST, etc.)
         config.addAllowedMethod("*");
 
+        // Autorise les en-têtes nécessaires (à ajuster selon vos besoins)
+        config.addAllowedHeader("Origin");
+        config.addAllowedHeader("Content-Type");
+        config.addAllowedHeader("Accept");
+        config.addAllowedHeader("Authorization");
+
+        // Configurations supplémentaires si nécessaires
+
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
