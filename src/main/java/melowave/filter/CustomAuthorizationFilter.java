@@ -1,4 +1,4 @@
-package melowave.security;
+package melowave.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

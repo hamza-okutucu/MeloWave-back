@@ -1,8 +1,8 @@
 package melowave.config;
 
 import lombok.RequiredArgsConstructor;
-import melowave.security.CustomAuthenticationFilter;
-import melowave.security.CustomAuthorizationFilter;
+import melowave.filter.CustomAuthenticationFilter;
+import melowave.filter.CustomAuthorizationFilter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
@@ -60,41 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(customAuthenticationFilter());
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.httpBasic();
-    }
-    
-    /*@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://51.91.100.173:4200", "https://hamza-okutucu.github.io"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }*/
-
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-
-        // Autorise votre origine spécifique
-        config.addAllowedOrigin("https://hamza-okutucu.github.io");
-
-        // Autorise toutes les méthodes HTTP (GET, POST, etc.)
-        config.addAllowedMethod("*");
-
-        // Autorise les en-têtes nécessaires (à ajuster selon vos besoins)
-        config.addAllowedHeader("Origin");
-        config.addAllowedHeader("Content-Type");
-        config.addAllowedHeader("Accept");
-        config.addAllowedHeader("Authorization");
-
-        // Configurations supplémentaires si nécessaires
-
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
     }
 
     private CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
