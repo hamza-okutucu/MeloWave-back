@@ -55,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(apiBasePath + "/song/artists").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/song/genres").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/song/status").permitAll();
+        http.authorizeRequests()
+        .antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter());
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
