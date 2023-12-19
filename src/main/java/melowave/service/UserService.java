@@ -74,7 +74,7 @@ public class UserService implements UserDetailsService {
     public User createUser(User user) {
         logger.info("Creating a new user: {}", user.getUsername());
 
-        if (userRepo.existsByUsername(user.getUsername())) {
+        if (isUsernameTaken(user.getUsername())) {
             logger.error("Username already taken: {}", user.getUsername());
             return null;
         }
@@ -88,6 +88,10 @@ public class UserService implements UserDetailsService {
 
         logger.info("New user created with ID: {}", savedUser.getId());
         return savedUser;
+    }
+
+    public boolean isUsernameTaken(String username) {
+        return userRepo.existsByUsername(username);
     }
 
     public User updateUser(User existingUser, User user) {

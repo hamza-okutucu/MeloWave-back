@@ -104,6 +104,12 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+        String newUsername = user.getUsername();
+        if (newUsername != null && userService.isUsernameTaken(newUsername)) {
+            logger.error("Username already taken: {}", newUsername);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
         User updatedUser = userService.updateUser(existingUser, user);
 
         logger.info("Updated user with username: {}", authentication.getName());
