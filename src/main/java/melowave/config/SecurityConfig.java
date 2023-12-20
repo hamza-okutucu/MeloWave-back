@@ -46,7 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/song/artists",
                 "/song/genres",
                 "/song/status",
-                "/swagger-ui/index.html"
+                "/v2/api-docs",
+                "/swagger-resources/**",
+                "/swagger-ui/**",
+                "/webjars/**" 
             ).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter());
