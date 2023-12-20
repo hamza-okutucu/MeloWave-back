@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login").permitAll();
         http.authorizeRequests().antMatchers("/user/create").permitAll();
         http.authorizeRequests().antMatchers("/song/find/*").permitAll();
+        http.authorizeRequests().antMatchers("/song/search").permitAll();
         http.authorizeRequests().antMatchers("/song/search/count").permitAll();
         http.authorizeRequests().antMatchers("/song/stream/*").permitAll();
         http.authorizeRequests().antMatchers("/song/artists").permitAll();
