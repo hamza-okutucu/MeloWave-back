@@ -17,6 +17,8 @@ import melowave.service.SongService;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
+import java.util.Base64;
+
 @WebMvcTest(SongController.class)
 public class SongControllerTests {
 
@@ -57,9 +59,13 @@ public class SongControllerTests {
         song.setId(songId);
         song.setAudio(new byte[]{1, 2, 3});
         when(songService.getSongById(eq(songId))).thenReturn(song);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/song/stream/{songId}", songId))
-               .andExpect(MockMvcResultMatchers.status().isOk())
-               .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_OCTET_STREAM));
+        String credentials = "hamza:hamza";
+        String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
+        
+        mockMvc.perform(MockMvcRequestBuilders.get("/song/stream/{songId}", songId)
+                    .header("Authorization", "Basic " + encodedCredentials))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_OCTET_STREAM));
+        
     }
 }
