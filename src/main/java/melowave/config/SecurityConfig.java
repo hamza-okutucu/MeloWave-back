@@ -18,16 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static org.springframework.security.config.http.SessionCreationPolicy.*;
 
-import org.springframework.beans.factory.annotation.Value;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    
-    @Value("${api.base-path}")
-    private String apiBasePath;
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -41,26 +36,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        /*http.authorizeRequests().antMatchers(apiBasePath + "/login").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/user/create").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/find/*").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/search").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/search/count").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/stream/*").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/artists").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/genres").permitAll();
-        http.authorizeRequests().antMatchers(apiBasePath + "/song/status").permitAll();
         http.authorizeRequests()
-        .antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll();
+            .antMatchers(
+                "/login",
+                "/user/create",
+                "/song/find/*",
+                "/song/search/count",
+                "/song/stream/*",
+                "/song/artists",
+                "/song/genres",
+                "/song/status",
+                "/swagger-ui/index.html"
+            ).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter());
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);*/
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.httpBasic();
     }
 
     private CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
         CustomAuthenticationFilter filter = new CustomAuthenticationFilter(authenticationManagerBean());
-        filter.setFilterProcessesUrl("/api/v1/login");
+        filter.setFilterProcessesUrl("/login");
         return filter;
     }
 

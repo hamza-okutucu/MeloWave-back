@@ -31,7 +31,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     private final Logger logger = LoggerFactory.getLogger(CustomAuthorizationFilter.class);
-    private static final String LOGIN_PATH = "/api/login";
+    private static final String LOGIN_PATH = "/login";
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Override
