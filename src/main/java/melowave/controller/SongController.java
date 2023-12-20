@@ -34,15 +34,6 @@ public class SongController {
     private final Logger logger = LoggerFactory.getLogger(SongController.class);
     private final SongService songService;
 
-    @GetMapping("/all")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    public ResponseEntity<List<Song>> getSongs() {
-        logger.info("Attempting to get all songs");
-        List<Song> songs = songService.getSongs();
-        logger.info("Retrieved {} songs", songs.size());
-        return new ResponseEntity<>(songs, HttpStatus.OK);
-    }
-
     @GetMapping("/find/{id}")
     public ResponseEntity<Song> getSongById(@PathVariable Long id) {
         logger.info("Attempting to get song by ID: {}", id);

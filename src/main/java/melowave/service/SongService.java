@@ -20,11 +20,6 @@ public class SongService {
     private final Logger logger = LoggerFactory.getLogger(SongService.class);
     private final SongRepo songRepo;
 
-    public List<Song> getSongs() {
-        logger.info("Fetching all songs");
-        return songRepo.findAll();
-    }
-
     public Song getSongById(Long id) {
         logger.info("Fetching song by ID: {}", id);
         Optional<Song> song = songRepo.findSongById(id);
