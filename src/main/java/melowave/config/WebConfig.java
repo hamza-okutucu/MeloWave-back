@@ -1,4 +1,4 @@
-/*package melowave.config;
+package melowave.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -15,4 +15,4 @@ public class WebConfig implements WebMvcConfigurer {
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.addPathPrefix(apiBasePath, c -> true);
     }
-}*/
+}

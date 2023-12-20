@@ -30,10 +30,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .apis(RequestHandlerSelectors.basePackage("melowave"))
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiInfoMetaData())
-                .pathMapping(apiBasePath)
-                .useDefaultResponseMessages(false)
-                .directModelSubstitute(LocalDate.class, String.class)
-                .genericModelSubstitutes(ResponseEntity.class);
+                .pathMapping(apiBasePath);
     }
 
     private ApiInfo apiInfoMetaData() {
