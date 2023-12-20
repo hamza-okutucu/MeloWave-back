@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers(apiBasePath + "/login").permitAll();
+        /*http.authorizeRequests().antMatchers(apiBasePath + "/login").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/user/create").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/song/find/*").permitAll();
         http.authorizeRequests().antMatchers(apiBasePath + "/song/search").permitAll();
@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter());
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);*/
         http.httpBasic();
     }
 
