@@ -20,13 +20,13 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("MeloWave"))
+                .apis(RequestHandlerSelectors.basePackage("melowave"))
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiInfoMetaData());
     }
 
     private ApiInfo apiInfoMetaData() {
-        return new ApiInfoBuilder().title("melowave")
+        return new ApiInfoBuilder().title("MeloWave")
                 .description("Music streaming RESTful API")
                 .contact(new Contact("Hamza Okutucu", "https://hamza-okutucu.github.io/Portfolio/", "hamza.okutucu@outlook.com"))
                 .license("Apache 2.0")
