@@ -1,5 +1,6 @@
 package melowave.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,13 +16,18 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 @EnableWebMvc
 public class SwaggerConfig implements WebMvcConfigurer {
+    
+    @Value("${api.base-path}")
+    private String apiBasePath;
 
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2).select()
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
                 .apis(RequestHandlerSelectors.basePackage("melowave"))
                 .paths(PathSelectors.regex("/.*"))
-                .build().apiInfo(apiInfoMetaData());
+                .build().apiInfo(apiInfoMetaData())
+                .pathMapping(apiBasePath);
     }
 
     private ApiInfo apiInfoMetaData() {
