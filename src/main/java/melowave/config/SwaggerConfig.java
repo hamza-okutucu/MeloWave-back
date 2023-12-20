@@ -26,8 +26,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("melowave"))
                 .paths(PathSelectors.regex("/.*"))
-                .build().apiInfo(apiInfoMetaData());
-                //.pathMapping(apiBasePath);
+                .build().apiInfo(apiInfoMetaData())
+                .pathMapping("/api/v1");
     }
 
     private ApiInfo apiInfoMetaData() {
